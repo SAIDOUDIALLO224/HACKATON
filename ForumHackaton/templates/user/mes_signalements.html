@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mes Signalements</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+</head>
+<body>
+    <h1>Mes Signalements</h1>
+    <ul>
+        {% for signalement in signalements %}
+            <li>
+                <strong>{{ signalement.titre }}</strong> - {{ signalement.statut }}
+                <p>{{ signalement.description }}</p>
+            </li>
+        {% empty %}
+            <li>Aucun signalement trouvé.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'tableau_de_bord' %}">Retour au tableau de bord</a>
+</body>
+</html>

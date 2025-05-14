@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inscription</title>
+    <!DOCTYPE html>
+<html>
+<head>
+    <title>Inscription</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/formulaire.css' %}">
+</head>
+<body>
+    <div class="form-container">
+        <h1>Inscription</h1>
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+        <form method="post">
+            {% csrf_token %}
+            <label for="username">Nom d'utilisateur :</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="email">Email :</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="numero_tel">Numéro de téléphone :</label>
+            <input type="text" id="numero_tel" name="numero_tel">
+
+            <label for="password">Mot de passe :</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="role">Rôle :</label>
+            <select id="role" name="role">
+                <option value="citoyen">Citoyen</option>
+                <option value="admin">Administrateur</option>
+                <option value="touriste">Touriste</option>
+            </select>
+
+            <button type="submit">S'inscrire</button>
+        </form>
+        <p>J'ai déjà un compte ! <a href="{% url 'connexion' %}">Se connecter</a></p>
+    </div>
+</body>
+</html>

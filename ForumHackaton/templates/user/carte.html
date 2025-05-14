@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carte de Signalement Urbain</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+    <div id="map" style="height: 500px;"></div>
+
+    <script>
+        var map = L.map('map').setView([9.567, 13.456], 12);  // Position initiale
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Charger les données JSON des signalements
+        fetch('/api/carte_data/')  // L'URL de votre vue Django
+            .then(response => response.json())
+            .then(data => {
+                data.features.forEach(feature => {
+                    var lat = feature.geometry.coordinates[1];
+                    var lon = feature.geometry.coordinates[0];
+                    var description = feature.properties.description;
+                    var category = feature.properties.category;
+
+                    // Ajouter un marqueur pour chaque signalement
+                    L.marker([lat, lon])
+                        .addTo(map)
+                        .bindPopup(`<b>${category}</b><br>${description}`);
+                });
+            });
+    </script>
+</body>
+</html>

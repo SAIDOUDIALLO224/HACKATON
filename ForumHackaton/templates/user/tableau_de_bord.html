@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Tableau de Bord</title>
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Barre latérale -->
+        <aside class="sidebar">
+            <h2>Signalement Guinée</h2>
+            <ul>
+                <li><a href="{% url 'tableau_de_bord' %}">🏠 Tableau de bord</a></li>
+                <li><a href="{% url 'mes_signalements' %}">📋 Mes signalements</a></li>
+                <li><a href="{% url 'nouveau_signalement' %}">➕ Nouveau signalement</a></li>
+                <li><a href="{% url 'map' %}">🗺️ Carte</a></li>
+                <li><a href="{% url 'profil' %}">👤 Profil</a></li>
+                <li><a href="{% url 'notifications' %}">🔔 Notifications</a></li>
+                <li><a href="{% url 'deconnexion' %}">🚪 Déconnexion</a></li>
+            </ul>
+        </aside>
+
+        <!-- Contenu principal -->
+        <main class="main-content">
+            <h1>Bienvenue, {{ user.username }} !</h1>
+            <p><strong>Vous êtes connecter en tant que :</strong> {{ user.role }}</p>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Signalements ouverts</h3>
+                    <p><strong>12</strong></p>
+                </div>
+                <div class="card">
+                    <h3>Résolus</h3>
+                    <p><strong>7</strong></p>
+                </div>
+                <div class="card">
+                    <h3>Signalements en attente</h3>
+                    <p><strong>5</strong></p>
+                </div>
+                <div class="card">
+                    <h3>Commune la plus active</h3>
+                    <p><strong>Ratoma</strong></p>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

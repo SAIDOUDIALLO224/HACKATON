@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Plateforme de Signalement</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/public.css' %}">
+</head>
+<body>
+    <div class="banniere">
+        <img src="{% static '/TaxeUser/images/devise.jpg' %}" alt="Logo Guinée" class="logo-gauche">
+        <nav class="navbar">
+            <a href="{% url 'accueil_public' %}">Accueil</a> <!-- Lien vers la page d'accueil -->
+            <a href="{% url 'about' %}">À propos</a> <!-- Lien vers la page "À propos" -->
+            <a href="{% url 'connexion' %}">Connexion</a> <!-- Lien vers la page de connexion -->
+        </nav>
+        <img src="{% static '/TaxeUser/images/nimba.jpg' %}" alt="Logo Drapeau" class="logo-droite">
+    </div>
+
+    <div class="contenu-central">
+        <h1 class="titre-principal">Bienvenue sur la plateforme de signalement et navigation urbaine</h1>
+        <p class="description">Une application moderne pour améliorer la gestion urbaine en Guinée.</p>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 République de Guinée. Tous droits réservés.</p>
+    </footer>
+</body>
+</html>

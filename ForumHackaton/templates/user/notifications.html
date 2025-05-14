@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Notifications</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/formulaire.css' %}">
+</head>
+<body>
+    <div class="form-container">
+        <h1>Vos Notifications</h1>
+        <ul>
+            {% for notification in notifications %}
+                <li class="{% if not notification.lu %}non-lu{% endif %}">
+                    <p><strong>Message :</strong> {{ notification.message }}</p>
+                    <p><strong>Date :</strong> {{ notification.date_creation }}</p>
+                    {% if notification.signalement %}
+                        <p><a href="{% url 'detail_signalement' notification.signalement.id %}">Voir le signalement</a></p>
+                    {% endif %}
+                    <form method="post" action="{% url 'marquer_comme_lu' notification.id %}">
+                        {% csrf_token %}
+                        <button type="submit">Marquer comme lu</button>
+                    </form>
+                </li>
+            {% empty %}
+                <li>Aucune notification pour le moment.</li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'tableau_de_bord' %}">Retour au tableau de bord</a>
+    </div>
+</body>
+</html>

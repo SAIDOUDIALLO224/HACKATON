@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profil</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+</head>
+<body>
+    <h1>Profil de {{ user.username }}</h1>
+    <p><strong>Email :</strong> {{ user.email }}</p>
+    <p><strong>Numéro de téléphone :</strong> {{ user.numero_tel }}</p>
+    <p><strong>Rôle :</strong> {{ user.role }}</p>
+    <a href="{% url 'tableau_de_bord' %}">Retour au tableau de bord</a>
+</body>
+</html>

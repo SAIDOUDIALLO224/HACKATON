@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nouveau Signalement</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/formulaire.css' %}">
+</head>
+<body>
+    <div class="form-container">
+        <h1>Nouveau Signalement</h1>
+        <form method="post">
+            {% csrf_token %}
+            <label for="titre">Titre :</label>
+            <input type="text" id="titre" name="titre" required>
+
+            <label for="description">Description :</label>
+            <textarea id="description" name="description" rows="4" required></textarea>
+
+            <label for="type_probleme">Type de problème :</label>
+            <select id="type_probleme" name="type_probleme" required>
+                <option value="Route">Route endommagée</option>
+                <option value="Electricite">Panne électrique</option>
+                <option value="Dechets">Déchets non collectés</option>
+            </select>
+
+            <button type="submit">Soumettre</button>
+        </form>
+        <a href="{% url 'tableau_de_bord' %}">Retour au tableau de bord</a>
+    </div>
+</body>
+</html>
